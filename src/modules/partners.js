@@ -6,7 +6,7 @@ const partners = () => {
       const { image, kitchen, name, price, products, stars, time_of_delivery } =
         item;
       const a = document.createElement("a");
-      a.setAttribute("href", "./restaurant.html");
+      a.setAttribute("href", "./food/restaurant.html");
 
       a.classList.add("card");
       a.classList.add("card-restaurant");
