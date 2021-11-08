@@ -1,9 +1,6 @@
 const menu = () => {
   // const restaurant = "food-band";
   const cardsMenu = document.querySelector(".cards-menu");
-  const cartArray = localStorage.getItem("cart")
-    ? JSON.parse(localStorage.getItem("cart"))
-    : [];
 
   const changeTitle = (restaurant) => {
     const restaurantTitle = document.querySelector(".restaurant-title");
@@ -16,6 +13,10 @@ const menu = () => {
   };
 
   const addToCart = (cartItem) => {
+    const cartArray = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [];
+    console.log(cartArray);
     if (cartArray.some((item) => item.id === cartItem.id)) {
       cartArray.map((item) => {
         if (item.id === cartItem.id) {
@@ -27,6 +28,12 @@ const menu = () => {
       cartArray.push(cartItem);
     }
 
+    const modalPricetag = document.querySelector(".modal-pricetag");
+    const res = cartArray.reduce(
+      (sum, elem) => elem.price * elem.count + sum,
+      0
+    );
+    modalPricetag.textContent = `${res} ₽`;
     localStorage.setItem("cart", JSON.stringify(cartArray));
   };
 
